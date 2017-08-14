@@ -5,3 +5,5 @@ from django.contrib import admin
 
 from SscData.models import Timetable
 admin.site.register(Timetable)
+
+admin.site.site_header = 'SscApp backend admin panel'
