@@ -19,4 +19,26 @@ class Timetable(models.Model):
 	class Meta:
         	ordering = ["id"]
 
+class Host(models.Model):
+	def __unicode__(self):
+		return str(self.id) + '. ' + self.name + ' | ' + self.info
 
+	name = models.CharField(max_length=127)
+	info = models.CharField(max_length=255)
+	mail = models.CharField(max_length=255)
+	imgUrl = models.CharField(max_length=255)
+
+	class Meta:
+        	ordering = ["id"]
+
+class Sponsor(models.Model):
+	def __unicode__(self):
+		return str(self.id) + '. ' + self.name
+
+	name = models.CharField(max_length=255, blank=True)
+	imgUrl = models.CharField(max_length=255)
+	webUrl = models.CharField(max_length=255, blank=True)
+	mode = models.IntegerField()
+
+	class Meta:
+        	ordering = ["id"]

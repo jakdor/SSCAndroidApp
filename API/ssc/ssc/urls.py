@@ -20,9 +20,12 @@ from rest_framework import routers
 from SscData import views
 
 router = routers.DefaultRouter()
-
 router.register(r'api/timetable', views.TimetableViewSet)
+router.register(r'api/host', views.HostViewSet)
+router.register(r'api/sponsor', views.SponsorViewSet)
+router.register(r'api/app_data', views.AppDataViewSet, 'AppData')
 admin.autodiscover()
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
