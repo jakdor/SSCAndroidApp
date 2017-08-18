@@ -1,20 +1,32 @@
 package com.jakdor.sscapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jakdor.sscapp.Contact.ContactFragment;
+import com.jakdor.sscapp.Host.HostFragment;
+import com.jakdor.sscapp.Info.InfoFragment;
+import com.jakdor.sscapp.Map.MapFragment;
+import com.jakdor.sscapp.Media.MediaFragment;
+import com.jakdor.sscapp.Sponsor.SponsorFragment;
+import com.jakdor.sscapp.Timetable.TimetableFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private final String CLASS_TAG = "MainActivity";
+
+    private int currentMenuItem = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +34,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +43,28 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            loadBaseFragment();
+        }
+    }
+
+    private void loadBaseFragment(){
+        TimetableFragment timetableFragment = new TimetableFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, timetableFragment).commit();
+    }
+
+    private void switchFragment(Class fragmentClass){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        try {
+            transaction.replace(R.id.fragment_container, (Fragment)fragmentClass.newInstance());
+        }
+        catch (Exception e){
+            Log.e(CLASS_TAG, e.getMessage());
+        }
+
+        transaction.commit();
     }
 
     @Override
@@ -80,18 +105,33 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_camera && currentMenuItem != 0) {
+            currentMenuItem = 0;
+            switchFragment(TimetableFragment.class);
+        }
+        else if (id == R.id.nav_gallery && currentMenuItem != 1) {
+            currentMenuItem = 1;
+            switchFragment(HostFragment.class);
+        }
+        else if (id == R.id.nav_slideshow && currentMenuItem != 2) {
+            currentMenuItem = 2;
+            switchFragment(MapFragment.class);
+        }
+        else if (id == R.id.nav_manage && currentMenuItem != 3) {
+            currentMenuItem = 3;
+            switchFragment(SponsorFragment.class);
+        }
+        else if (id == R.id.nav_share && currentMenuItem != 4) {
+            currentMenuItem = 4;
+            switchFragment(MediaFragment.class);
+        }
+        else if (id == R.id.nav_send && currentMenuItem != 5) {
+            currentMenuItem = 5;
+            switchFragment(ContactFragment.class);
+        }
+        else if (id == R.id.nav_info && currentMenuItem != 6) {
+            currentMenuItem = 6;
+            switchFragment(InfoFragment.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
