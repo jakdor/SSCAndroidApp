@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'^', include(router.urls)),
 	url(r'^index', views.index, name='index'),
+	url(r'^api/last_update', views.lastUpdate, name='last_update'),
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -54,16 +54,9 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, timetableFragment).commit();
     }
 
-    private void switchFragment(Class fragmentClass){
+    private void switchFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        try {
-            transaction.replace(R.id.fragment_container, (Fragment)fragmentClass.newInstance());
-        }
-        catch (Exception e){
-            Log.e(CLASS_TAG, e.getMessage());
-        }
-
+        transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
     }
 
@@ -107,31 +100,31 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera && currentMenuItem != 0) {
             currentMenuItem = 0;
-            switchFragment(TimetableFragment.class);
+            switchFragment(new TimetableFragment());
         }
         else if (id == R.id.nav_gallery && currentMenuItem != 1) {
             currentMenuItem = 1;
-            switchFragment(HostFragment.class);
+            switchFragment(new HostFragment());
         }
         else if (id == R.id.nav_slideshow && currentMenuItem != 2) {
             currentMenuItem = 2;
-            switchFragment(MapFragment.class);
+            switchFragment(new MediaFragment());
         }
         else if (id == R.id.nav_manage && currentMenuItem != 3) {
             currentMenuItem = 3;
-            switchFragment(SponsorFragment.class);
+            switchFragment(new SponsorFragment());
         }
         else if (id == R.id.nav_share && currentMenuItem != 4) {
             currentMenuItem = 4;
-            switchFragment(MediaFragment.class);
+            switchFragment(new MediaFragment());
         }
         else if (id == R.id.nav_send && currentMenuItem != 5) {
             currentMenuItem = 5;
-            switchFragment(ContactFragment.class);
+            switchFragment(new ContactFragment());
         }
         else if (id == R.id.nav_info && currentMenuItem != 6) {
             currentMenuItem = 6;
-            switchFragment(InfoFragment.class);
+            switchFragment(new InfoFragment());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

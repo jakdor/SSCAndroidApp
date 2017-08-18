@@ -8,6 +8,7 @@ from collections import namedtuple
 # Create your views here.
 
 from rest_framework.response import Response
+from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework import permissions
 from SscData.models import Timetable
@@ -17,6 +18,7 @@ from SscData.serializers import HostSerializer
 from SscData.models import Sponsor
 from SscData.serializers import SponsorSerializer
 from SscData.serializers import AppDataSerializer
+from django.contrib.admin.models import LogEntry
 
 from django.shortcuts import render_to_response
  
@@ -53,5 +55,7 @@ class AppDataViewSet(viewsets.ViewSet):
         serializer = AppDataSerializer(appdata)
         return Response(serializer.data)
 
+def lastUpdate(request):
+	return HttpResponse(LogEntry.objects.values_list('id').order_by('-action_time')[0])
 
 

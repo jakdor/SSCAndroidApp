@@ -9,4 +9,7 @@ public interface SscService {
 
     @GET("app_data")
     Call<AppData> getAppData();
+
+    @GET("last_update")
+    Call<String> getLastUpdateId();
 }

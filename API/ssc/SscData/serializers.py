@@ -2,6 +2,7 @@ from SscData.models import Timetable
 from SscData.models import Host
 from SscData.models import Sponsor
 from rest_framework import serializers
+from django.contrib.admin.models import LogEntry
 
 class TimetableSerializer(serializers.HyperlinkedModelSerializer):
 	
@@ -38,3 +39,4 @@ class AppDataSerializer(serializers.Serializer):
 	timetables = TimetableSerializer(many=True)
     	hosts = HostSerializer(many=True)
 	sponsors = SponsorSerializer(many=True)
+
