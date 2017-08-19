@@ -16,5 +16,6 @@
     <string name="menu_map">Map</string>
     <string name="menu_sponsor"><![CDATA[Sponsors & partners]]></string>
     <string name="menu_conference">Conference</string>
+    <string name="loading_gif">loading gif</string>
 
 </resources>

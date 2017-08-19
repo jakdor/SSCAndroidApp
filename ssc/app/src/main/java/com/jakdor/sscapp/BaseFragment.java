@@ -1,13 +1,18 @@
 package com.jakdor.sscapp;
 
+import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.jakdor.sscapp.Network.NetworkManager;
 
-public class BaseFragment extends Fragment {
+/**
+ * Handles communication with NetworkManager and app lifecycle
+ */
+public abstract class BaseFragment extends Fragment {
 
     private final String CLASS_TAG = "BaseFragment";
 
@@ -24,8 +29,10 @@ public class BaseFragment extends Fragment {
             else if(networkManager.isDbReady() == 2){
                 loadContent();
                 networkManager.networkProblemInfoDisplayed();
-                Toast.makeText(getContext(), getString(R.string.net_no_server_connection),
-                        Toast.LENGTH_SHORT).show();
+                if(getContext() != null) {
+                    Toast.makeText(getContext(), getString(R.string.net_no_server_connection),
+                            Toast.LENGTH_SHORT).show();
+                }
                 networkHandler.removeCallbacks(this);
             }
             else if(networkManager.isDbReady() == 3){
@@ -39,6 +46,13 @@ public class BaseFragment extends Fragment {
     };
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        networkManager = NetworkManager.getInstance();
+        networkHandler.postDelayed(networkStatusCheck, 50);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if(MainActivity.appOnRestartCalled) {
@@ -47,6 +61,12 @@ public class BaseFragment extends Fragment {
             networkManager.checkForUpdate(getContext());
             networkHandler.postDelayed(networkStatusCheck, 10);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        networkHandler.removeCallbacks(networkStatusCheck);
     }
 
     protected void firstLoadFailure(){
