@@ -6,17 +6,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.jakdor.sscapp.Contact.ContactFragment;
 import com.jakdor.sscapp.Host.HostFragment;
 import com.jakdor.sscapp.Info.InfoFragment;
-import com.jakdor.sscapp.Map.MapFragment;
 import com.jakdor.sscapp.Media.MediaFragment;
 import com.jakdor.sscapp.Sponsor.SponsorFragment;
 import com.jakdor.sscapp.Timetable.TimetableFragment;
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity
     private final String CLASS_TAG = "MainActivity";
 
     private int currentMenuItem = 0;
+    private int faviconCounter = 0;
+    private ActionBar appBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        appBar = getSupportActionBar();
+
         if (savedInstanceState == null) {
             loadBaseFragment();
         }
@@ -52,6 +59,9 @@ public class MainActivity extends AppCompatActivity
     private void loadBaseFragment(){
         TimetableFragment timetableFragment = new TimetableFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, timetableFragment).commit();
+        if(appBar != null) {
+            appBar.setTitle(getString(R.string.menu_timetable));
+        }
     }
 
     private void switchFragment(Fragment fragment){
@@ -72,20 +82,27 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu
         getMenuInflater().inflate(R.menu.main, menu);
+
+        ImageView menuImage = (ImageView) findViewById(R.id.menuImage);
+        Glide.with(this)
+                .load("http://ssc.pwr.edu.pl/wp/wp-content/uploads/2015/03/KNSlogosmall2.png")
+                .into(menuImage);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.favicon) {
+            faviconCounter++;
+            if(faviconCounter == 3) {
+                Toast.makeText(this, "Yes, this is clickable for some reason...",
+                        Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
 
@@ -101,30 +118,51 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera && currentMenuItem != 0) {
             currentMenuItem = 0;
             switchFragment(new TimetableFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_timetable));
+            }
         }
         else if (id == R.id.nav_gallery && currentMenuItem != 1) {
             currentMenuItem = 1;
             switchFragment(new HostFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_host));
+            }
         }
         else if (id == R.id.nav_slideshow && currentMenuItem != 2) {
             currentMenuItem = 2;
             switchFragment(new MediaFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_map));
+            }
         }
         else if (id == R.id.nav_manage && currentMenuItem != 3) {
             currentMenuItem = 3;
             switchFragment(new SponsorFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_sponsor));
+            }
         }
         else if (id == R.id.nav_share && currentMenuItem != 4) {
             currentMenuItem = 4;
             switchFragment(new MediaFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_share));
+            }
         }
         else if (id == R.id.nav_send && currentMenuItem != 5) {
             currentMenuItem = 5;
             switchFragment(new ContactFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_contact));
+            }
         }
         else if (id == R.id.nav_info && currentMenuItem != 6) {
             currentMenuItem = 6;
             switchFragment(new InfoFragment());
+            if(appBar != null) {
+                appBar.setTitle(getString(R.string.menu_info));
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
