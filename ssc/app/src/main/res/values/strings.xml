@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">SscApp</string>
 
+    <string name="net_no_server_connection">No server connection!\nData might be outdated</string>
+    <string name="net_no_init_data">Internet connection required to load initial data, then app can be used offline.\n\n Check internet connection and restart app</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="menu_timetable">Timetable</string>
     <string name="menu_other">Other</string>
     <string name="menu_share">Media</string>
@@ -14,4 +16,5 @@
     <string name="menu_map">Map</string>
     <string name="menu_sponsor"><![CDATA[Sponsors & partners]]></string>
     <string name="menu_conference">Conference</string>
+
 </resources>

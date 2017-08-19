@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.jakdor.sscapp.Contact.ContactFragment;
 import com.jakdor.sscapp.Host.HostFragment;
 import com.jakdor.sscapp.Info.InfoFragment;
+import com.jakdor.sscapp.Map.MapFragment;
 import com.jakdor.sscapp.Media.MediaFragment;
 import com.jakdor.sscapp.Sponsor.SponsorFragment;
 import com.jakdor.sscapp.Timetable.TimetableFragment;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String CLASS_TAG = "MainActivity";
+
+    public static boolean appOnRestartCalled = false;
 
     private int currentMenuItem = 0;
     private int faviconCounter = 0;
@@ -115,42 +118,42 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera && currentMenuItem != 0) {
+        if (id == R.id.nav_timetable && currentMenuItem != 0) {
             currentMenuItem = 0;
             switchFragment(new TimetableFragment());
             if(appBar != null) {
                 appBar.setTitle(getString(R.string.menu_timetable));
             }
         }
-        else if (id == R.id.nav_gallery && currentMenuItem != 1) {
+        else if (id == R.id.nav_host && currentMenuItem != 1) {
             currentMenuItem = 1;
             switchFragment(new HostFragment());
             if(appBar != null) {
                 appBar.setTitle(getString(R.string.menu_host));
             }
         }
-        else if (id == R.id.nav_slideshow && currentMenuItem != 2) {
+        else if (id == R.id.nav_map && currentMenuItem != 2) {
             currentMenuItem = 2;
-            switchFragment(new MediaFragment());
+            switchFragment(new MapFragment());
             if(appBar != null) {
                 appBar.setTitle(getString(R.string.menu_map));
             }
         }
-        else if (id == R.id.nav_manage && currentMenuItem != 3) {
+        else if (id == R.id.nav_sponsor && currentMenuItem != 3) {
             currentMenuItem = 3;
             switchFragment(new SponsorFragment());
             if(appBar != null) {
                 appBar.setTitle(getString(R.string.menu_sponsor));
             }
         }
-        else if (id == R.id.nav_share && currentMenuItem != 4) {
+        else if (id == R.id.nav_media && currentMenuItem != 4) {
             currentMenuItem = 4;
             switchFragment(new MediaFragment());
             if(appBar != null) {
                 appBar.setTitle(getString(R.string.menu_share));
             }
         }
-        else if (id == R.id.nav_send && currentMenuItem != 5) {
+        else if (id == R.id.nav_contact && currentMenuItem != 5) {
             currentMenuItem = 5;
             switchFragment(new ContactFragment());
             if(appBar != null) {
@@ -168,5 +171,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        appOnRestartCalled = true;
+        Log.i(CLASS_TAG, "app resume");
     }
 }

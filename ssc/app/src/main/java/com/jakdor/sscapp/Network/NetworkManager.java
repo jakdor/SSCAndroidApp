@@ -2,6 +2,8 @@ package com.jakdor.sscapp.Network;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.jakdor.sscapp.Model.AppData;
@@ -19,7 +21,7 @@ public class NetworkManager{
     private final String CLASS_TAG = "NetworkManager";
 
     private SscService sscService;
-    private Boolean dbReady = false;
+    private int dbReady = 0;
     private int apiLastUpdateId;
     private int localLastUpdateId;
 
@@ -37,13 +39,35 @@ public class NetworkManager{
         sscService = SscApi.getClient().create(SscService.class);
     }
 
+    private boolean checkNetworkStatus(Context context){
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if(networkInfo == null){
+            Log.e(CLASS_TAG, "Internet status: no service!");
+            return false;
+        }
+        else {
+            Log.i(CLASS_TAG, "Internet status: OK");
+            return true;
+        }
+    }
+
     public void checkForUpdate(final Context context){
-        SharedPreferences settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        localLastUpdateId = settings.getInt("dbLastUpdate", 0);
+        dbReady = 0; //block db access
 
-        Log.i(CLASS_TAG, "Local lastUpdateID pre update: " + Integer.toString(localLastUpdateId));
+        if(checkNetworkStatus(context)) {
+            SharedPreferences settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+            localLastUpdateId = settings.getInt("dbLastUpdate", 0);
 
-        checkLastUpdateId(context);
+            Log.i(CLASS_TAG, "Local lastUpdateID pre update: " + Integer.toString(localLastUpdateId));
+
+            checkLastUpdateId(context);
+        }
+        else {
+            dbReady = 2;
+        }
     }
 
     //retrofit calls to api
@@ -76,7 +100,7 @@ public class NetworkManager{
             loadAppData(context);
         } else {
             Log.i(CLASS_TAG, "Local db up-to-date");
-            dbReady = true;
+            dbReady = 1;
         }
     }
 
@@ -90,22 +114,31 @@ public class NetworkManager{
         editor.putInt("dbLastUpdate", localLastUpdateId);
         editor.apply();
 
-        dbReady = true;
+        dbReady = 1;
+    }
+
+    private void connectionProblem(Throwable throwable){
+        Log.e(CLASS_TAG, "connection problem: " + throwable.getMessage());
+        if(localLastUpdateId == 0){
+            dbReady = 3;
+        }
+        else {
+            dbReady = 2;
+        }
     }
 
     private void checkLastUpdateId(final Context context) {
         callLastUpdate().enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.i(CLASS_TAG, "Last update id: " + response.body());
+                Log.i(CLASS_TAG, "Last db update ID: " + response.body());
                 apiLastUpdateId = Integer.parseInt(response.body());
                 updateCheck(context);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.e(CLASS_TAG, "connection problem: " + t.getMessage());
-                dbReady = true; //todo implement failed to get init data
+                connectionProblem(t);
             }
         });
     }
@@ -158,14 +191,16 @@ public class NetworkManager{
 
             @Override
             public void onFailure(Call<AppData> call, Throwable t) {
-                Log.e(CLASS_TAG, "connection problem: " + t.getMessage());
-                dbReady = true;
+                connectionProblem(t);
             }
         });
     }
 
-
-    public Boolean isDbReady() {
+    public int isDbReady() {
         return dbReady;
+    }
+
+    public void networkProblemInfoDisplayed(){
+        dbReady = 1;
     }
 }
