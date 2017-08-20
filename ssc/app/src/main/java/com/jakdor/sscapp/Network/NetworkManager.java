@@ -131,6 +131,10 @@ public class NetworkManager{
         callLastUpdate().enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body() == null){
+                    connectionProblem(new Throwable("Server returned null"));
+                    return;
+                }
                 Log.i(CLASS_TAG, "Last db update ID: " + response.body());
                 apiLastUpdateId = Integer.parseInt(response.body());
                 updateCheck(context);
@@ -147,6 +151,10 @@ public class NetworkManager{
         callAppData().enqueue(new Callback<AppData>() {
             @Override
             public void onResponse(Call<AppData> call, Response<AppData> response) {
+                if(response.body() == null){
+                    connectionProblem(new Throwable("Server returned null"));
+                    return;
+                }
 
                 List<Timetable> timetables = fetchTimetables(response);
                 List<Host> hosts = fetchHosts(response);
