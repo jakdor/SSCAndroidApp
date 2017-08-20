@@ -8,4 +8,6 @@
     <color name="menu_object_color">#000000</color>
 
     <color name="divider">#32000000</color>
+    <color name="section_bar">#435469</color>
+    <color name="section_bar_text">#FFFFFF</color>
 </resources>

@@ -18,8 +18,8 @@ public abstract class BaseFragment extends Fragment {
 
     protected NetworkManager networkManager;
 
-    protected Handler networkHandler = new Handler();
-    protected Runnable networkStatusCheck = new Runnable() {
+    private Handler networkHandler = new Handler();
+    private Runnable networkStatusCheck = new Runnable() {
         @Override
         public void run() {
             if(networkManager.isDbReady() == 1){

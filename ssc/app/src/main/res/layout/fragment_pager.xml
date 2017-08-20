@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/timetable_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dumy test content"/>
-
-    <!-- RecycleView here (?) -->
+        android:layout_height="match_parent"
+        android:layout_marginBottom="6dp"/>
 
 </LinearLayout>

@@ -24,7 +24,7 @@ public class TimetableFragment extends NetContentBaseFragment {
     @BindView(R.id.timetable_pager)
     ViewPager viewPager;
 
-    View fragmentView;
+    private View fragmentView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -33,7 +33,6 @@ public class TimetableFragment extends NetContentBaseFragment {
         createView(fragmentView);
 
         contentLayout.setVisibility(View.GONE);
-        setupPager();
 
         return fragmentView;
     }
@@ -41,6 +40,7 @@ public class TimetableFragment extends NetContentBaseFragment {
     @Override
     protected void loadContent(){
         super.loadContent();
+        setupPager();
         contentLayout.setVisibility(View.VISIBLE);
     }
 
