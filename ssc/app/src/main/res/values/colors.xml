@@ -10,4 +10,6 @@
     <color name="divider">#32000000</color>
     <color name="section_bar">#435469</color>
     <color name="section_bar_text">#FFFFFF</color>
+
+    <color name="text_white">#FFFFFF</color>
 </resources>

@@ -17,5 +17,8 @@
     <string name="menu_sponsor"><![CDATA[Sponsors & partners]]></string>
     <string name="menu_conference">Conference</string>
     <string name="loading_gif">loading gif</string>
+    <string name="timetable_place_holder">timetable place holder</string>
+    <string name="timetable_item_now">NOW</string>
+    <string name="timetable_place_holder_time">00:00 - 00:00</string>
 
 </resources>
