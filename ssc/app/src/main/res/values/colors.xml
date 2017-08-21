@@ -12,4 +12,5 @@
     <color name="section_bar_text">#FFFFFF</color>
 
     <color name="text_white">#FFFFFF</color>
+    <color name="text_black">#000000</color>
 </resources>

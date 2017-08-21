@@ -24,6 +24,7 @@ public class SscApi {
                     .client(okHttpClient)
                     .build();
         }
+        //192.168.1.185:8000
         return retrofit;
     }
 }

@@ -1,11 +1,15 @@
 package com.jakdor.sscapp.Timetable;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jakdor.sscapp.Model.Timetable;
@@ -36,7 +40,7 @@ class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.Holder> {
     public TimetableAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater
                 .from(parent.getContext()).inflate(R.layout.item_timetable, parent, false);
-        
+
         formatter = new SimpleDateFormat("HH:mm", Locale.GERMAN);
 
         return new TimetableAdapter.Holder(inflatedView);
@@ -56,6 +60,10 @@ class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.Holder> {
         else {
             holder.nowCard.setVisibility(View.GONE);
         }
+
+        holder.itemName.setOnClickListener( view -> showDetailsDialog(timetable));
+        holder.itemTime.setOnClickListener( view -> showDetailsDialog(timetable));
+        holder.clockIcon.setOnClickListener( view -> showDetailsDialog(timetable));
     }
 
     @Override
@@ -75,10 +83,39 @@ class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.Holder> {
         TextView itemTime;
         @BindView(R.id.timetable_item_now_tab)
         CardView nowCard;
+        @BindView(R.id.timetable_item_clock)
+        ImageView clockIcon;
 
         Holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+    }
+
+    private void showDetailsDialog(Timetable timetable){
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.timetable_item_dialog);
+        dialog.show();
+
+        TextView dialogName = dialog.findViewById(R.id.timetable_dialog_name);
+        dialogName.setText(timetable.getName());
+
+        TextView dialogTime = dialog.findViewById(R.id.timetable_dialog_time);
+        dialogTime.setText(formatTime(timetable.getHStart(),
+                timetable.getMStart(), timetable.getHEnd(), timetable.getMEnd()));
+
+        TextView dialogInfo = dialog.findViewById(R.id.timetable_dialog_info);
+
+        ScrollView dialogScroll = dialog.findViewById(R.id.timetable_dialog_scroll_view);
+
+        if(timetable.getInfo().isEmpty()){
+            dialogScroll.setVisibility(View.GONE);
+        }
+        else {
+            String text = timetable.getInfo();
+            text = text.replace("\\n", "\n");
+            dialogInfo.setText(text);
         }
     }
 

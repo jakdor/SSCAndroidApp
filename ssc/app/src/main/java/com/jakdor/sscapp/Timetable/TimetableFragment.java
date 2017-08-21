@@ -25,6 +25,7 @@ public class TimetableFragment extends NetContentBaseFragment {
     ViewPager viewPager;
 
     private View fragmentView;
+    private int savedPageNum = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -41,12 +42,19 @@ public class TimetableFragment extends NetContentBaseFragment {
     protected void loadContent(){
         super.loadContent();
         setupPager();
+        viewPager.setCurrentItem(savedPageNum);
         contentLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void removeContentWhileLoad() {
         contentLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        savedPageNum = viewPager.getCurrentItem();
     }
 
     static final int NUM_ITEMS = 3;

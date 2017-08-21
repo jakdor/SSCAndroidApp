@@ -54,8 +54,8 @@ public abstract class NetContentBaseFragment extends BaseFragment {
     @Override
     protected void loadingUpdate() {
         super.loadingUpdate();
-        loadingCard.setVisibility(View.GONE);
         removeContentWhileLoad();
+        loadingCard.setVisibility(View.GONE);
     }
 
     protected abstract void removeContentWhileLoad();
