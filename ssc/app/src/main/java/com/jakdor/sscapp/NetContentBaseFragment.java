@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public abstract class NetContentBaseFragment extends BaseFragment {
 
     @BindView(R.id.loading_view)
-    LinearLayout loadingView;
+    protected LinearLayout loadingView;
     @BindView(R.id.loading_card)
     CardView loadingCard;
     @BindView(R.id.loading_message)
@@ -29,6 +29,7 @@ public abstract class NetContentBaseFragment extends BaseFragment {
     //pass child View in onCreateView
     public void createView(View view) {
         ButterKnife.bind(this, view);
+        loadingCard.setVisibility(View.GONE);
     }
 
     @Override
@@ -40,7 +41,10 @@ public abstract class NetContentBaseFragment extends BaseFragment {
                 .asGif()
                 .into(loadingAnim);
 
-        loadingView.setVisibility(View.VISIBLE);
+        if(MainActivity.appOnRestartCalled) {
+            loadingView.setVisibility(View.VISIBLE);
+            MainActivity.appOnRestartCalled = false;
+        }
         loadingCard.setVisibility(View.GONE);
         loadingAnim.setVisibility(View.VISIBLE);
     }
@@ -48,6 +52,7 @@ public abstract class NetContentBaseFragment extends BaseFragment {
     @Override
     protected void loadContent(){
         super.loadContent();
+        loadingAnim.setImageBitmap(null);
         loadingView.setVisibility(View.GONE);
     }
 

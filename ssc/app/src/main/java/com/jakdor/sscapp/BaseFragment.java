@@ -56,7 +56,6 @@ public abstract class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if(MainActivity.appOnRestartCalled) {
-            MainActivity.appOnRestartCalled = false;
             loadingUpdate();
             networkManager.checkForUpdate(getContext());
             networkHandler.postDelayed(networkStatusCheck, 10);

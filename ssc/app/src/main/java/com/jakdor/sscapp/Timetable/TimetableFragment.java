@@ -1,5 +1,6 @@
 package com.jakdor.sscapp.Timetable;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,8 @@ import com.jakdor.sscapp.NetContentBaseFragment;
 import com.jakdor.sscapp.R;
 
 import butterknife.BindView;
+
+import static android.app.Activity.RESULT_OK;
 
 public class TimetableFragment extends NetContentBaseFragment {
 

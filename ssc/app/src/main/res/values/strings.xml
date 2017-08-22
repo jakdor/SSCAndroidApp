@@ -21,5 +21,12 @@
     <string name="timetable_item_now">NOW</string>
     <string name="timetable_place_holder_time">00:00 - 00:00</string>
     <string name="timetable_dialog_info_place_holder">timetabale dialog info place holder</string>
+    <string name="host_overlay">overlay</string>
+    <string name="host_picture">host picture</string>
+    <string name="host_item_name_place_holder">host item name place holder</string>
+    <string name="host_item_info_place_holder">host item info place holder</string>
+    <string name="host_mail_image">host mail image</string>
+    <string name="mail_topic">Students\' Science Conference</string>
+    <string name="mail_fail">No mail client installed</string>
 
 </resources>
