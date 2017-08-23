@@ -40,5 +40,13 @@
     <string name="media_youtube_chanel">Youtube chanel</string>
     <string name="media_instagram">Instagram</string>
     <string name="media_conference_website">Conference website</string>
+    <string name="asi_logo">ASI logo</string>
+    <string name="application_created_by">Application created by</string>
+    <string name="academic_it_association">(Academic IT Association)</string>
+    <string name="me">Jakub Dorda</string>
+    <string name="me_info">Software developer, ASI member</string>
+    <string name="special_thanks_for_creating_graphics_to">Special thanks for help with graphics to:</string>
+    <string name="graphic_designer_conference_host">Graphic designer, conference host</string>
+    <string name="roksana_kowalczyk">Roksana Kowalczyk</string>
 
 </resources>
