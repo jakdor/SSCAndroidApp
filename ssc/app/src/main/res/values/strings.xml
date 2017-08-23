@@ -33,5 +33,12 @@
     <string name="map_info2">Conference will start in H-14 University building</string>
     <string name="map_info3">view on map:</string>
     <string name="sponsor_item_place_holder">sponsor item place holder</string>
+    <string name="media_image">media image</string>
+    <string name="media_info_place_holder">media info place holder</string>
+    <string name="media_twitter_profile">Twitter profile</string>
+    <string name="media_facebook_fanpage">Facebook fanpage</string>
+    <string name="media_youtube_chanel">Youtube chanel</string>
+    <string name="media_instagram">Instagram</string>
+    <string name="media_conference_website">Conference website</string>
 
 </resources>

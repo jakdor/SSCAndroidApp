@@ -24,13 +24,8 @@ public class MapFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick(R.id.mapInfo)
+    @OnClick({R.id.mapInfo, R.id.mapButton})
     public void onMapInfoClick(){
-        lunchMap();
-    }
-
-    @OnClick(R.id.mapButton)
-    public void onMapClick(){
         lunchMap();
     }
 
