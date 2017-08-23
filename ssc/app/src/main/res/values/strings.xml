@@ -32,5 +32,6 @@
     <string name="map_info1">First day of conference (21st September) begins with registration between 8:30&#8211;9:00 fallowed by Official opening ceremony on 9:30</string>
     <string name="map_info2">Conference will start in H-14 University building</string>
     <string name="map_info3">view on map:</string>
+    <string name="sponsor_item_place_holder">sponsor item place holder</string>
 
 </resources>

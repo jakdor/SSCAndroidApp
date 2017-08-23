@@ -48,16 +48,10 @@ public class HostFragment extends NetContentBaseFragment {
         loadRecyclerView();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     private void loadRecyclerView(){
         List<Host> hosts = Host.listAll(Host.class);
 
         HostAdapter hostAdapter = new HostAdapter(getContext(), Glide.with(this), hosts);
         recyclerView.setAdapter(hostAdapter);
     }
-
 }
