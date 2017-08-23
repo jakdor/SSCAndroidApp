@@ -1,11 +1,9 @@
 package com.jakdor.sscapp.Timetable;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +14,7 @@ import com.jakdor.sscapp.R;
 
 import butterknife.BindView;
 
-import static android.app.Activity.RESULT_OK;
-
 public class TimetableFragment extends NetContentBaseFragment {
-
-    private final String CLASS_TAG = "TimetableFragment";
 
     @BindView(R.id.contentLayout)
     LinearLayout contentLayout;
@@ -66,8 +60,7 @@ public class TimetableFragment extends NetContentBaseFragment {
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-        SlidingTabLayout slidingTabLayout
-                = (SlidingTabLayout)fragmentView.findViewById(R.id.sliding_tabs);
+        SlidingTabLayout slidingTabLayout = fragmentView.findViewById(R.id.sliding_tabs);
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(
                 ContextCompat.getColor(getContext(), R.color.colorPrimary));

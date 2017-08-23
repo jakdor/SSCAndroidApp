@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.jakdor.sscapp.Model.Host;
 import com.jakdor.sscapp.NetContentBaseFragment;
 import com.jakdor.sscapp.R;
@@ -55,7 +56,7 @@ public class HostFragment extends NetContentBaseFragment {
     private void loadRecyclerView(){
         List<Host> hosts = Host.listAll(Host.class);
 
-        HostAdapter hostAdapter = new HostAdapter(getContext(), hosts);
+        HostAdapter hostAdapter = new HostAdapter(getContext(), Glide.with(this), hosts);
         recyclerView.setAdapter(hostAdapter);
     }
 

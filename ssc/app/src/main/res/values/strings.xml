@@ -19,8 +19,8 @@
     <string name="loading_gif">loading gif</string>
     <string name="timetable_place_holder">timetable place holder</string>
     <string name="timetable_item_now">NOW</string>
-    <string name="timetable_place_holder_time">00:00 - 00:00</string>
-    <string name="timetable_dialog_info_place_holder">timetabale dialog info place holder</string>
+    <string name="timetable_place_holder_time">00:00 &#8211; 00:00</string>
+    <string name="timetable_dialog_info_place_holder">timetable dialog info place holder</string>
     <string name="host_overlay">overlay</string>
     <string name="host_picture">host picture</string>
     <string name="host_item_name_place_holder">host item name place holder</string>
@@ -28,5 +28,9 @@
     <string name="host_mail_image">host mail image</string>
     <string name="mail_topic">Students\' Science Conference</string>
     <string name="mail_fail">No mail client installed</string>
+    <string name="conference_registration_and_opening">Conference registration and opening</string>
+    <string name="map_info1">First day of conference (21st September) begins with registration between 8:30&#8211;9:00 fallowed by Official opening ceremony on 9:30</string>
+    <string name="map_info2">Conference will start in H-14 University building</string>
+    <string name="map_info3">view on map:</string>
 
 </resources>

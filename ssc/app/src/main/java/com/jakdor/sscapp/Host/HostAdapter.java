@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.jakdor.sscapp.Model.Host;
 import com.jakdor.sscapp.R;
 
@@ -24,10 +25,12 @@ class HostAdapter extends RecyclerView.Adapter<HostAdapter.Holder> {
 
     private List<Host> hosts;
     private Context context;
+    private RequestManager glide;
 
-    HostAdapter(Context context, List<Host> hosts) {
+    HostAdapter(Context context, RequestManager glide, List<Host> hosts) {
         this.hosts = hosts;
         this.context = context;
+        this.glide = glide;
     }
 
     @Override
@@ -44,9 +47,7 @@ class HostAdapter extends RecyclerView.Adapter<HostAdapter.Holder> {
 
         holder.name.setText(host.getName());
         holder.info.setText(host.getInfo());
-        Glide.with(context)
-                .load(host.getImgUrl())
-                .placeholder(R.drawable.host_image_place_holder)
+        glide.load(host.getImgUrl())
                 .fitCenter()
                 .crossFade()
                 .into(holder.image);
