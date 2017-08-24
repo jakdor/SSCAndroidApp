@@ -48,5 +48,8 @@
     <string name="special_thanks_for_creating_graphics_to">Special thanks for help with graphics to:</string>
     <string name="graphic_designer_conference_host">Graphic designer, conference host</string>
     <string name="roksana_kowalczyk">Roksana Kowalczyk</string>
+    <string name="link_me_img"><![CDATA[https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-8/17390545_619955721543311_6631848786949583906_o.jpg?oh=e4f1ab7364a576cb0ea4d53a810e2302&oe=5A32016E]]></string>
+    <string name="link_roks_img">http://ssc.pwr.edu.pl/wp/wp-content/uploads/2017/03/ssc_foto_Roksana.jpg</string>
+    <string name="link_asi_img">http://ssc.pwr.edu.pl/wp/wp-content/uploads/2017/08/logo-asi.png</string>
 
 </resources>
