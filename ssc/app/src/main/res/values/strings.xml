@@ -29,7 +29,7 @@
     <string name="mail_topic">Students\' Science Conference</string>
     <string name="mail_fail">No mail client installed</string>
     <string name="conference_registration_and_opening">Conference registration and opening</string>
-    <string name="map_info1">First day of conference (21st September) begins with registration between 8:30&#8211;9:00 fallowed by Official opening ceremony on 9:30</string>
+    <string name="map_info1">First day of conference (21st of September) begins with registration between 8:30&#8211;9:00 fallowed by official opening ceremony on 9:30</string>
     <string name="map_info2">Conference will start in H-14 University building</string>
     <string name="map_info3">view on map:</string>
     <string name="sponsor_item_place_holder">sponsor item place holder</string>
@@ -51,5 +51,9 @@
     <string name="link_me_img"><![CDATA[https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-8/17390545_619955721543311_6631848786949583906_o.jpg?oh=e4f1ab7364a576cb0ea4d53a810e2302&oe=5A32016E]]></string>
     <string name="link_roks_img">http://ssc.pwr.edu.pl/wp/wp-content/uploads/2017/03/ssc_foto_Roksana.jpg</string>
     <string name="link_asi_img">http://ssc.pwr.edu.pl/wp/wp-content/uploads/2017/08/logo-asi.png</string>
+    <string name="contact_title">CONFERENCE OFFICE</string>
+    <string name="contact_info">In order to ensure the highest quality of your Students’ Science Conference experience we have established a Conference Office. It is almost 24/7 available and has a goal to answer any of your questions below 2 working days. We strive to reach most of the expectations you have towards the event, therefore you are more than welcome to write any suggestions, questions and problems you have encountered.</string>
+    <string name="contact_title2">Contact us</string>
+    <string name="contact_mail">office@ssc.pwr.edu.pl</string>
 
 </resources>
