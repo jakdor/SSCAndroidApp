@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models.signals import post_save
+from SscData.pushNotif import pushNotification
 
 class Timetable(models.Model):	
 	def __unicode__(self):
@@ -42,3 +44,19 @@ class Sponsor(models.Model):
 
 	class Meta:
         	ordering = ["id"]
+
+class Notification(models.Model):
+	def __unicode__(self):
+		return 'Title: ' + self.title + ' Message: ' + self.message
+
+	title = models.CharField(max_length=63)
+	message = models.CharField(max_length=255)
+
+	class Meta:
+        	ordering = ["id"]
+
+def post_save_actions(sender, instance, created, **kwargs):
+	print('Sending notification id: ' + str(instance.id))
+	pushNotification(instance.title, instance.message)
+
+post_save.connect(post_save_actions, sender=Notification)

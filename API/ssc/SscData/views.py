@@ -56,6 +56,6 @@ class AppDataViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 def lastUpdate(request):
-	return HttpResponse(LogEntry.objects.values_list('id').order_by('-action_time')[0])
+	return HttpResponse(LogEntry.objects.exclude(content_type_id=10).values_list('id').order_by('-action_time')[0])
 
 

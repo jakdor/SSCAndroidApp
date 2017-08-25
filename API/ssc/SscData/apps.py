@@ -6,3 +6,4 @@ from django.apps import AppConfig
 
 class SscdataConfig(AppConfig):
     name = 'SscData'
+

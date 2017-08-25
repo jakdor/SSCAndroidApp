@@ -9,5 +9,7 @@ from SscData.models import Host
 admin.site.register(Host)
 from SscData.models import Sponsor
 admin.site.register(Sponsor)
+from SscData.models import Notification
+admin.site.register(Notification)
 
 admin.site.site_header = 'SscApp backend admin panel'

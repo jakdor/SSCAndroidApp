@@ -13,9 +13,9 @@ public class SscApi {
         if(retrofit == null){
 
             OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-                    .connectTimeout(4, TimeUnit.SECONDS)
-                    .readTimeout(4, TimeUnit.SECONDS)
-                    .writeTimeout(4, TimeUnit.SECONDS)
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(5, TimeUnit.SECONDS)
+                    .writeTimeout(5, TimeUnit.SECONDS)
                     .build();
 
             retrofit = new Retrofit.Builder()
