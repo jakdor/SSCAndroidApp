@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "111748470494",
+    "project_id": "firebase-sscapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111748470494:android:c1daac075484932f",
+        "android_client_info": {
+          "package_name": "com.jakdor.sscapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111748470494-0ie44gbifsdclsad78h7veg9n8g13tqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY10n6rJJd3VCQtdxkhg8Q690Loldf94M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

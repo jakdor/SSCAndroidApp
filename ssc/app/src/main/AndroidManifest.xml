@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jakdor.sscapp">
 
+    <permission
+        android:name="com.jakdor.sscapp.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission
+        android:name="com.jakdor.sscapp.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -15,6 +20,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name="com.orm.SugarApp">
+
+        <service android:name=".notifications.RegistrationService"
+            android:exported="false" />
+
+        <service
+            android:name=".notifications.TokenRefreshListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".notifications.NotificationsListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.jakdor.sscapp" />
+            </intent-filter>
+        </receiver>
 
         <meta-data android:name="DATABASE" android:value="database.db" />
         <meta-data android:name="VERSION" android:value="1" />
@@ -31,12 +65,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="gcm_defaultSenderId">111748470494</string>
+
     <string name="menu_timetable">Timetable</string>
     <string name="menu_other">Other</string>
     <string name="menu_share">Media</string>
