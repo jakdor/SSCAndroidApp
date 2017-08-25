@@ -10,10 +10,12 @@ messageBody = sys.argv[2]
 
 data={
     "to" : "/topics/sscapp",
-    "notification" : {
+    "data" : {
         "body" : messageBody,
         "title" : messageTitle,
-        "icon" : "notif_icon"
+        "icon" : "favicon",
+	"vibration": "true",
+	"led": "true"
     }
 }
 	
