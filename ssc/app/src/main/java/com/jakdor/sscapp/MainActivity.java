@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private final String CLASS_TAG = "MainActivity";
 
     public static boolean appOnRestartCalled = false;
-    public static boolean appSleeping = false;
+    public static boolean appSleeping = true;
 
     private int currentMenuItem = 0;
     private int faviconCounter = 0;
@@ -178,8 +178,13 @@ public class MainActivity extends AppCompatActivity
     protected void onRestart() {
         super.onRestart();
         appOnRestartCalled = true;
-        appSleeping = false;
         Log.i(CLASS_TAG, "app restart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appSleeping = false;
     }
 
     @Override

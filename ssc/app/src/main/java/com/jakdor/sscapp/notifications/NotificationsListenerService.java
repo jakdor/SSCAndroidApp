@@ -35,9 +35,12 @@ public class NotificationsListenerService extends GcmListenerService {
     private void sendNotification(String title, String body) {
         Context context = getBaseContext();
 
-        PendingIntent contentIntent = null;
+        PendingIntent contentIntent;
         if(MainActivity.appSleeping) {
             contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, SplashActivity.class), 0);
+        }
+        else {
+            contentIntent = null;
         }
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
