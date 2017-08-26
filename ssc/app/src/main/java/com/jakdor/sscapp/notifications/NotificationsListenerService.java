@@ -1,12 +1,12 @@
 package com.jakdor.sscapp.notifications;
 
-import android.app.AlertDialog;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -23,6 +23,12 @@ public class NotificationsListenerService extends GcmListenerService {
 
     private final String CLASS_TAG = "NotificationsService";
     private static int massageId = 666;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initChannels(getBaseContext());
+    }
 
     @Override
     public void onMessageReceived(String s, Bundle bundle) {
@@ -43,7 +49,7 @@ public class NotificationsListenerService extends GcmListenerService {
             contentIntent = null;
         }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "default")
                 .setDefaults(DEFAULT_VIBRATE | DEFAULT_LIGHTS)
                 .setSmallIcon(R.drawable.favicon).setContentTitle(title)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
@@ -54,5 +60,18 @@ public class NotificationsListenerService extends GcmListenerService {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         massageId++;
         mNotificationManager.notify(massageId, mBuilder.build());
+    }
+
+    private void initChannels(Context context) {
+        if (Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel("default",
+                "SSCapp",
+                NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription("SSC notifications");
+        notificationManager.createNotificationChannel(channel);
     }
 }

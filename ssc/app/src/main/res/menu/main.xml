@@ -6,6 +6,6 @@
         android:id="@+id/favicon"
         android:title=""
         android:orderInCategory="79"
-        android:icon="@drawable/favicon"
+        android:icon="@mipmap/ic_favicon"
         app:showAsAction="ifRoom|withText" />
 </menu>

@@ -29,7 +29,7 @@ public class RegistrationService extends IntentService {
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE,
                     null
             );
-            Log.i(CLASS_TAG, "Got registaration token: " + registrationToken); //todo move to Log.d
+            Log.i(CLASS_TAG, "Got registration token: " + registrationToken);
         }
         catch (Exception e){
             Log.e(CLASS_TAG, "Can't get registration token");

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.jakdor.sscapp.Model.Host;
 import com.jakdor.sscapp.R;
