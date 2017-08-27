@@ -43,7 +43,7 @@
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/timetable_item_time"
             android:visibility="gone"
-            android:backgroundTint="@color/colorPrimaryDark">
+            android:backgroundTint="@color/colorPrimary">
 
             <TextView
                 android:layout_width="match_parent"

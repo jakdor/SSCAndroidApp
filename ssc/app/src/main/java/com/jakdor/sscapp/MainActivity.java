@@ -83,24 +83,31 @@ public class MainActivity extends AppCompatActivity
         if(appBar != null) {
             if(fragment instanceof TimetableFragment){
                 appBar.setTitle(getString(R.string.menu_timetable));
+                currentMenuItem = 0;
             }
             else if(fragment instanceof HostFragment){
                 appBar.setTitle(getString(R.string.menu_host));
+                currentMenuItem = 1;
             }
             else if(fragment instanceof MapFragment){
                 appBar.setTitle(getString(R.string.menu_map));
+                currentMenuItem = 2;
             }
             else if(fragment instanceof SponsorFragment){
                 appBar.setTitle(getString(R.string.menu_sponsor));
+                currentMenuItem = 3;
             }
             else if(fragment instanceof MediaFragment){
                 appBar.setTitle(getString(R.string.menu_share));
+                currentMenuItem = 4;
             }
             else if(fragment instanceof ContactFragment){
                 appBar.setTitle(getString(R.string.menu_contact));
+                currentMenuItem = 5;
             }
             else if(fragment instanceof InfoFragment){
                 appBar.setTitle(getString(R.string.menu_info));
+                currentMenuItem = 6;
             }
         }
     }

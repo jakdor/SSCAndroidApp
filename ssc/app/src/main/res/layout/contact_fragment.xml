@@ -108,12 +108,12 @@
                             android:id="@+id/contactButton"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:layout_marginStart="5dp"
+                            android:layout_marginStart="2dp"
                             android:background="@null"
                             android:contentDescription="@string/contact_mail"
                             android:scaleType="fitCenter"
-                            android:tint="@color/colorPrimaryDark"
-                            app:srcCompat="@drawable/menu_contact" />
+                            android:tint="@color/colorPrimary"
+                            app:srcCompat="@drawable/ic_mail" />
 
                     </LinearLayout>
 
