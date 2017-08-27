@@ -20,7 +20,7 @@ public class SscApi {
 
             retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://192.168.1.123:8000/api/")
+                    .baseUrl("http://192.168.1.11:8000/api/")
                     .client(okHttpClient)
                     .build();
         }

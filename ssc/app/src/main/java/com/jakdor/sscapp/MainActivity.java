@@ -25,6 +25,8 @@ import com.jakdor.sscapp.Media.MediaFragment;
 import com.jakdor.sscapp.Sponsor.SponsorFragment;
 import com.jakdor.sscapp.Timetable.TimetableFragment;
 
+import java.util.Stack;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     private int currentMenuItem = 0;
     private int faviconCounter = 0;
     private ActionBar appBar;
+
+    private Stack<Fragment> fragmentBackStack = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +66,43 @@ public class MainActivity extends AppCompatActivity
 
     private void loadBaseFragment(){
         TimetableFragment timetableFragment = new TimetableFragment();
+        fragmentBackStack.add(timetableFragment);
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, timetableFragment).commit();
-        if(appBar != null) {
-            appBar.setTitle(getString(R.string.menu_timetable));
-        }
+        setAppBar(timetableFragment);
     }
 
     private void switchFragment(Fragment fragment){
+        fragmentBackStack.add(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
+        setAppBar(fragment);
+    }
+
+    private void setAppBar(Fragment fragment){
+        if(appBar != null) {
+            if(fragment instanceof TimetableFragment){
+                appBar.setTitle(getString(R.string.menu_timetable));
+            }
+            else if(fragment instanceof HostFragment){
+                appBar.setTitle(getString(R.string.menu_host));
+            }
+            else if(fragment instanceof MapFragment){
+                appBar.setTitle(getString(R.string.menu_map));
+            }
+            else if(fragment instanceof SponsorFragment){
+                appBar.setTitle(getString(R.string.menu_sponsor));
+            }
+            else if(fragment instanceof MediaFragment){
+                appBar.setTitle(getString(R.string.menu_share));
+            }
+            else if(fragment instanceof ContactFragment){
+                appBar.setTitle(getString(R.string.menu_contact));
+            }
+            else if(fragment instanceof InfoFragment){
+                appBar.setTitle(getString(R.string.menu_info));
+            }
+        }
     }
 
     @Override
@@ -79,8 +110,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }
+        else {
+            if(fragmentBackStack.size() >= 2){ //manage custom fragment back stack
+                fragmentBackStack.pop();
+                switchFragment(fragmentBackStack.pop());
+            }
+            else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -121,51 +159,30 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_timetable && currentMenuItem != 0) {
             currentMenuItem = 0;
             switchFragment(new TimetableFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_timetable));
-            }
         }
         else if (id == R.id.nav_host && currentMenuItem != 1) {
             currentMenuItem = 1;
             switchFragment(new HostFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_host));
-            }
         }
         else if (id == R.id.nav_map && currentMenuItem != 2) {
             currentMenuItem = 2;
             switchFragment(new MapFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_map));
-            }
         }
         else if (id == R.id.nav_sponsor && currentMenuItem != 3) {
             currentMenuItem = 3;
             switchFragment(new SponsorFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_sponsor));
-            }
         }
         else if (id == R.id.nav_media && currentMenuItem != 4) {
             currentMenuItem = 4;
             switchFragment(new MediaFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_share));
-            }
         }
         else if (id == R.id.nav_contact && currentMenuItem != 5) {
             currentMenuItem = 5;
             switchFragment(new ContactFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_contact));
-            }
         }
         else if (id == R.id.nav_info && currentMenuItem != 6) {
             currentMenuItem = 6;
             switchFragment(new InfoFragment());
-            if(appBar != null) {
-                appBar.setTitle(getString(R.string.menu_info));
-            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
