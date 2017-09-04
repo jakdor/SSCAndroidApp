@@ -66,7 +66,12 @@ public class NetworkManager{
             checkLastUpdateId(context);
         }
         else {
-            dbReady = 2;
+            if(localLastUpdateId == 0){
+                dbReady = 3;
+            }
+            else {
+                dbReady = 2;
+            }
         }
     }
 
