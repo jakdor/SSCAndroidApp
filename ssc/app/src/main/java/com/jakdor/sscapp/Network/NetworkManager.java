@@ -57,12 +57,11 @@ public class NetworkManager{
     public void checkForUpdate(final Context context){
         dbReady = 0; //block db access
 
+        SharedPreferences settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        localLastUpdateId = settings.getInt("dbLastUpdate", 0);
+        Log.i(CLASS_TAG, "Local lastUpdateID pre update: " + Integer.toString(localLastUpdateId));
+
         if(checkNetworkStatus(context)) {
-            SharedPreferences settings = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
-            localLastUpdateId = settings.getInt("dbLastUpdate", 0);
-
-            Log.i(CLASS_TAG, "Local lastUpdateID pre update: " + Integer.toString(localLastUpdateId));
-
             checkLastUpdateId(context);
         }
         else {
