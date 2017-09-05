@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import com.jakdor.sscapp.NetContentBaseFragment;
 import com.jakdor.sscapp.R;
 
+import java.util.Calendar;
+
 import butterknife.BindView;
 
 public class TimetableFragment extends NetContentBaseFragment {
@@ -22,7 +24,7 @@ public class TimetableFragment extends NetContentBaseFragment {
     ViewPager viewPager;
 
     private View fragmentView;
-    private int savedPageNum = 0;
+    private static int savedPageNum = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -54,16 +56,37 @@ public class TimetableFragment extends NetContentBaseFragment {
         savedPageNum = viewPager.getCurrentItem();
     }
 
-    static final int NUM_ITEMS = 3;
+    static final int NUM_ITEMS = 4;
 
     private void setupPager(){
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+
+        viewPager.post(() -> {
+            viewPager.setCurrentItem(getDay());
+        });
 
         SlidingTabLayout slidingTabLayout = fragmentView.findViewById(R.id.sliding_tabs);
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(
                 ContextCompat.getColor(getContext(), R.color.colorPrimary));
         slidingTabLayout.setViewPager(viewPager);
+    }
+
+    private int getDay(){
+        Calendar calendar = Calendar.getInstance();
+        int calMonth = calendar.get(Calendar.MONTH);
+        if(calMonth != 8) {
+            return 0;
+        }
+
+        int calDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        if(calDay >= 21 && calDay <= 24){
+            return calDay - 21;
+        }
+        else {
+            return 0;
+        }
     }
 }

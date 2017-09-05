@@ -8,7 +8,7 @@ import static com.jakdor.sscapp.Timetable.TimetableFragment.NUM_ITEMS;
 
 class PagerAdapter extends FragmentPagerAdapter {
 
-    private final String[] tabName = {"Sharing", "Learning", "Networking"};
+    private final String[] tabName = {"DAY I", "DAY II", "DAY III", "DAY IV"};
 
     PagerAdapter(FragmentManager fm) {
         super(fm);

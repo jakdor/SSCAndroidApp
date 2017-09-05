@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jakdor.sscapp.Model.Timetable;
 import com.jakdor.sscapp.R;
@@ -23,6 +24,8 @@ public class PagerFragment extends Fragment {
 
     @BindView(R.id.timetable_recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.timetable_recycler_view_info)
+    TextView dayInfoView;
 
 
     //Create a new instance of CountingFragment, providing "num" as an argument.
@@ -63,21 +66,30 @@ public class PagerFragment extends Fragment {
     }
 
     private final String[] sectionText = {
+            "Sharing",
+            "Learning",
+            "Networking"};
+
+    private final String[] dayInfoText = {
             "DAY I - THURSDAY, 21st September",
             "DAY II - FRIDAY, 22nd September",
             "DAY III - SATURDAY, 23rd September",
             "DAY IV - SUNDAY, 24th September"};
 
     private void loadRecyclerView(){
-        String query = "mode=" + Integer.toString(pagerFragmentNum+1);
+        String query = "day=" + Integer.toString(pagerFragmentNum + 1);
         List<Timetable> timetables = Timetable.find(Timetable.class, query);
 
         if(timetables.isEmpty()){
             recyclerView.setVisibility(View.GONE);
+            dayInfoView.setVisibility(View.GONE);
             return;
         }
 
-        TimetableAdapter timetableAdapter = new TimetableAdapter(getContext(), timetables);
+        dayInfoView.setText(dayInfoText[pagerFragmentNum]);
+
+        TimetableAdapter timetableAdapter =
+                new TimetableAdapter(getContext(), timetables);
 
         //Provide a sectioned list
         List<SimpleSectionedRecyclerViewAdapter.Section> sections = new ArrayList<>();
@@ -85,10 +97,10 @@ public class PagerFragment extends Fragment {
         //add sections
         int currentSection = -1;
         for (int i = 0; i < timetables.size(); ++i){
-            int day = timetables.get(i).getDay();
-            if(currentSection != day){
-                sections.add(new SimpleSectionedRecyclerViewAdapter.Section(i, sectionText[day - 1]));
-                currentSection = day;
+            int mode = timetables.get(i).getMode();
+            if(currentSection != mode){
+                sections.add(new SimpleSectionedRecyclerViewAdapter.Section(i, sectionText[mode - 1]));
+                currentSection = mode;
             }
         }
 

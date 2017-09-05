@@ -3,6 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/timetable_recycler_view_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/text_white"
+        android:background="@color/colorPrimary"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/timetable_recycler_view"
         android:layout_width="match_parent"
