@@ -24,7 +24,7 @@ public class TimetableFragment extends NetContentBaseFragment {
     ViewPager viewPager;
 
     private View fragmentView;
-    private static int savedPageNum = 0;
+    private static int savedPageNum = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -63,7 +63,9 @@ public class TimetableFragment extends NetContentBaseFragment {
         viewPager.setAdapter(pagerAdapter);
 
         viewPager.post(() -> {
-            viewPager.setCurrentItem(getDay());
+            if(savedPageNum == -1) {
+                viewPager.setCurrentItem(getDay());
+            }
         });
 
         SlidingTabLayout slidingTabLayout = fragmentView.findViewById(R.id.sliding_tabs);

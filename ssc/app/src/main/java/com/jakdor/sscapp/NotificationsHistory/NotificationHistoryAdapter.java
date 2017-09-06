@@ -1,6 +1,5 @@
 package com.jakdor.sscapp.NotificationsHistory;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +17,9 @@ import butterknife.ButterKnife;
 class NotificationHistoryAdapter extends RecyclerView.Adapter<NotificationHistoryAdapter.Holder> {
 
     private List<NotificationHistory> notifications;
-    private Context context;
 
-    NotificationHistoryAdapter(Context context, List<NotificationHistory> notifications) {
+    NotificationHistoryAdapter(List<NotificationHistory> notifications) {
         this.notifications = notifications;
-        this.context = context;
     }
 
     @Override

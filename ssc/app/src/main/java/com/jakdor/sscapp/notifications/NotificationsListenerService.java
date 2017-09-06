@@ -15,7 +15,6 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.jakdor.sscapp.MainActivity;
 import com.jakdor.sscapp.Model.NotificationHistory;
 import com.jakdor.sscapp.R;
-import com.jakdor.sscapp.SplashActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

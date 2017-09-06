@@ -59,7 +59,7 @@ public class NotificationsHistoryFragment extends BaseFragment {
             return;
         }
 
-        NotificationHistoryAdapter adapter = new NotificationHistoryAdapter(getContext(), notifications);
+        NotificationHistoryAdapter adapter = new NotificationHistoryAdapter(notifications);
         recyclerView.setAdapter(adapter);
     }
 }
