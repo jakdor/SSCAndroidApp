@@ -68,7 +68,7 @@ public class MainActivityEspressoTest {
                 allOf(withId(R.id.timetable_recycler_view),
                         childAtPosition(
                                 withParent(withId(R.id.timetable_pager)),
-                                0),
+                                1),
                         isDisplayed()));
         recyclerView.check(matches(isDisplayed()));
 
@@ -87,17 +87,6 @@ public class MainActivityEspressoTest {
                                 0),
                         isDisplayed()));
         imageView.check(matches(isDisplayed()));
-
-        ViewInteraction textView3 = onView(
-                allOf(withText("Conference"),
-                        childAtPosition(
-                                allOf(withId(R.id.design_navigation_view),
-                                        childAtPosition(
-                                                withId(R.id.nav_view),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        textView3.check(matches(withText("Conference")));
 
         ViewInteraction textView4 = onView(
                 allOf(withText("Other"),
@@ -123,18 +112,18 @@ public class MainActivityEspressoTest {
         appCompatCheckedTextView.perform(click());
 
         ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.timetable_item_name), withText("Session I"), isDisplayed()));
+                allOf(withId(R.id.timetable_item_name), withText("Conference Registration Opens"), isDisplayed()));
         appCompatTextView.perform(click());
 
         ViewInteraction textView6 = onView(
-                allOf(withId(R.id.timetable_dialog_name), withText("Session I"),
+                allOf(withId(R.id.timetable_dialog_name), withText("Conference Registration Opens"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 0),
                         isDisplayed()));
-        textView6.check(matches(withText("Session I")));
+        textView6.check(matches(withText("Conference Registration Opens")));
 
         pressBack();
 
@@ -213,6 +202,24 @@ public class MainActivityEspressoTest {
                         0),
                         isDisplayed()));
         frameLayout2.check(matches(isDisplayed()));
+
+        ViewInteraction appCompatImageButton9 = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        withParent(withId(R.id.toolbar)),
+                        isDisplayed()));
+        appCompatImageButton9.perform(click());
+
+        ViewInteraction appCompatCheckedTextView10 = onView(
+                allOf(withId(R.id.design_menu_item_text), withText("Notification history"), isDisplayed()));
+        appCompatCheckedTextView10.perform(click());
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //notif hist test
 
         ViewInteraction appCompatImageButton6 = onView(
                 allOf(withContentDescription("Open navigation drawer"),
@@ -361,6 +368,16 @@ public class MainActivityEspressoTest {
             e.printStackTrace();
         }
 
+        //notif hist test
+
+        pressBack();
+
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         ViewInteraction textView11 = onView(
                 allOf(withId(R.id.sponsor_item_name), withText("Polish Academy of Sciences"),
                         childAtPosition(
@@ -411,7 +428,7 @@ public class MainActivityEspressoTest {
                 allOf(withId(R.id.timetable_recycler_view),
                         childAtPosition(
                                 withParent(withId(R.id.timetable_pager)),
-                                0),
+                                1),
                         isDisplayed()));
         recyclerView4.check(matches(isDisplayed()));
 

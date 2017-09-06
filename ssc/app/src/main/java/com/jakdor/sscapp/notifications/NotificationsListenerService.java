@@ -13,8 +13,13 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 import com.jakdor.sscapp.MainActivity;
+import com.jakdor.sscapp.Model.NotificationHistory;
 import com.jakdor.sscapp.R;
 import com.jakdor.sscapp.SplashActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.app.Notification.DEFAULT_LIGHTS;
 import static android.app.Notification.DEFAULT_VIBRATE;
@@ -35,6 +40,7 @@ public class NotificationsListenerService extends GcmListenerService {
         super.onMessageReceived(s, bundle);
         Log.i(CLASS_TAG, "received message: " + bundle.toString());
 
+        saveNotification(bundle.getString("title"), bundle.getString("body"));
         sendNotification(bundle.getString("title"), bundle.getString("body"));
     }
 
@@ -43,7 +49,10 @@ public class NotificationsListenerService extends GcmListenerService {
 
         PendingIntent contentIntent;
         if(MainActivity.appSleeping) {
-            contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, SplashActivity.class), 0);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("notifDisp", 1);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            contentIntent = PendingIntent.getActivity(this, 0, intent , 0);
         }
         else {
             contentIntent = null;
@@ -55,11 +64,20 @@ public class NotificationsListenerService extends GcmListenerService {
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                         R.mipmap.ic_launcher))
                 .setContentIntent(contentIntent)
-                .setContentText(body);
+                .setContentText(body)
+                .setAutoCancel(true);
         NotificationManager mNotificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
         massageId++;
         mNotificationManager.notify(massageId, mBuilder.build());
+    }
+
+    private void saveNotification(String title, String message){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN);
+        String time = sdf.format(new Date());
+
+        NotificationHistory notification = new NotificationHistory(title, message, time);
+        notification.save();
     }
 
     private void initChannels(Context context) {

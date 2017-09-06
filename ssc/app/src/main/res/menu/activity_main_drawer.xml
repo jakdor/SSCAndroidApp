@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/menu_conference">
-        <menu>
-            <item
-                android:id="@+id/nav_timetable"
-                android:icon="@drawable/menu_timetable"
-                android:title="@string/menu_timetable" />
-            <item
-                android:id="@+id/nav_host"
-                android:icon="@drawable/menu_host"
-                android:title="@string/menu_host" />
-            <item
-                android:id="@+id/nav_map"
-                android:icon="@drawable/menu_map"
-                android:title="@string/menu_map" />
-            <item
-                android:id="@+id/nav_sponsor"
-                android:icon="@drawable/menu_sponsor"
-                android:title="@string/menu_sponsor" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_timetable"
+        android:icon="@drawable/menu_timetable"
+        android:title="@string/menu_timetable" />
+    <item
+        android:id="@+id/nav_host"
+        android:icon="@drawable/menu_host"
+        android:title="@string/menu_host" />
+    <item
+        android:id="@+id/nav_map"
+        android:icon="@drawable/menu_map"
+        android:title="@string/menu_map" />
+    <item
+        android:id="@+id/nav_sponsor"
+        android:icon="@drawable/menu_sponsor"
+        android:title="@string/menu_sponsor" />
+    <item
+        android:id="@+id/nav_notif_hist"
+        android:icon="@drawable/menu_notification"
+        android:title="@string/menu_notification_history" />
 
     <item android:title="@string/menu_other">
         <menu>

@@ -71,10 +71,10 @@ public class PagerFragment extends Fragment {
             "Networking"};
 
     private final String[] dayInfoText = {
-            "DAY I - THURSDAY, 21st September",
-            "DAY II - FRIDAY, 22nd September",
-            "DAY III - SATURDAY, 23rd September",
-            "DAY IV - SUNDAY, 24th September"};
+            "THURSDAY, 21st September",
+            "FRIDAY, 22nd September",
+            "SATURDAY, 23rd September",
+            "SUNDAY, 24th September"};
 
     private void loadRecyclerView(){
         String query = "day=" + Integer.toString(pagerFragmentNum + 1);

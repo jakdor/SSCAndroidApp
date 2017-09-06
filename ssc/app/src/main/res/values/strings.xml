@@ -17,6 +17,7 @@
     <string name="menu_host">Hosts</string>
     <string name="menu_map">Map</string>
     <string name="menu_sponsor"><![CDATA[Sponsors & partners]]></string>
+    <string name="menu_notification_history">Notification history</string>
     <string name="menu_conference">Conference</string>
     <string name="loading_gif">loading gif</string>
     <string name="timetable_place_holder">timetable place holder</string>
@@ -57,5 +58,10 @@
     <string name="contact_info">In order to ensure the highest quality of your Students’ Science Conference experience we have established a Conference Office. It is almost 24/7 available and has a goal to answer any of your questions below 2 working days. We strive to reach most of the expectations you have towards the event, therefore you are more than welcome to write any suggestions, questions and problems you have encountered.</string>
     <string name="contact_title2">Contact us</string>
     <string name="contact_mail">office@ssc.pwr.edu.pl</string>
+    <string name="ssc_conference_logo">ssc conference logo</string>
+    <string name="notification_hist_time_place_holder">23.04.2017 00:00</string>
+    <string name="notification_hist_title_place_holder">Title</string>
+    <string name="notification_hist_message_place_holder">Notification body here</string>
+    <string name="you_haven_t_received_any_notifications_yet">You haven\'t received any notifications yet</string>
 
 </resources>

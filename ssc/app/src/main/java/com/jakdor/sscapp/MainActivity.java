@@ -1,5 +1,6 @@
 package com.jakdor.sscapp;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,9 +25,12 @@ import com.jakdor.sscapp.Host.HostFragment;
 import com.jakdor.sscapp.Info.InfoFragment;
 import com.jakdor.sscapp.Map.MapFragment;
 import com.jakdor.sscapp.Media.MediaFragment;
+import com.jakdor.sscapp.Model.NotificationHistory;
+import com.jakdor.sscapp.NotificationsHistory.NotificationsHistoryFragment;
 import com.jakdor.sscapp.Sponsor.SponsorFragment;
 import com.jakdor.sscapp.Timetable.TimetableFragment;
 
+import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity
@@ -62,6 +68,14 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             loadBaseFragment();
         }
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            int data = extras.getInt("notifDisp");
+            if(data == 1){
+                showNotificationDialog();
+            }
+        }
     }
 
     private void loadBaseFragment(){
@@ -97,19 +111,48 @@ public class MainActivity extends AppCompatActivity
                 appBar.setTitle(getString(R.string.menu_sponsor));
                 currentMenuItem = 3;
             }
+            else if(fragment instanceof NotificationsHistoryFragment){
+                appBar.setTitle(getString(R.string.menu_notification_history));
+                currentMenuItem = 4;
+            }
             else if(fragment instanceof MediaFragment){
                 appBar.setTitle(getString(R.string.menu_share));
-                currentMenuItem = 4;
+                currentMenuItem = 5;
             }
             else if(fragment instanceof ContactFragment){
                 appBar.setTitle(getString(R.string.menu_contact));
-                currentMenuItem = 5;
+                currentMenuItem = 6;
             }
             else if(fragment instanceof InfoFragment){
                 appBar.setTitle(getString(R.string.menu_info));
-                currentMenuItem = 6;
+                currentMenuItem = 7;
             }
         }
+    }
+
+    private void showNotificationDialog(){
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.notif_hist_dialog);
+
+        NotificationHistory notification = null;
+
+        try{
+            List<NotificationHistory> notificationHistories
+                    = NotificationHistory.listAll(NotificationHistory.class);
+            notification = notificationHistories.get(notificationHistories.size() - 1);
+        }
+        catch (Exception e){
+            return;
+        }
+
+        dialog.show();
+
+        TextView title = dialog.findViewById(R.id.notification_dialog_title);
+        title.setText(notification.getTitle());
+
+        TextView message = dialog.findViewById(R.id.notification_dialog_message);
+        message.setText(notification.getMessage());
     }
 
     @Override
@@ -179,16 +222,20 @@ public class MainActivity extends AppCompatActivity
             currentMenuItem = 3;
             switchFragment(new SponsorFragment());
         }
-        else if (id == R.id.nav_media && currentMenuItem != 4) {
+        else if (id == R.id.nav_notif_hist && currentMenuItem != 4) {
             currentMenuItem = 4;
+            switchFragment(new NotificationsHistoryFragment());
+        }
+        else if (id == R.id.nav_media && currentMenuItem != 5) {
+            currentMenuItem = 5;
             switchFragment(new MediaFragment());
         }
-        else if (id == R.id.nav_contact && currentMenuItem != 5) {
-            currentMenuItem = 5;
+        else if (id == R.id.nav_contact && currentMenuItem != 6) {
+            currentMenuItem = 6;
             switchFragment(new ContactFragment());
         }
-        else if (id == R.id.nav_info && currentMenuItem != 6) {
-            currentMenuItem = 6;
+        else if (id == R.id.nav_info && currentMenuItem != 7) {
+            currentMenuItem = 7;
             switchFragment(new InfoFragment());
         }
 
