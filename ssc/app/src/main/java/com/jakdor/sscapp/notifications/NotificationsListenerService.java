@@ -15,6 +15,7 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.jakdor.sscapp.MainActivity;
 import com.jakdor.sscapp.Model.NotificationHistory;
 import com.jakdor.sscapp.R;
+import com.jakdor.sscapp.SplashActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,15 +48,11 @@ public class NotificationsListenerService extends GcmListenerService {
         Context context = getBaseContext();
 
         PendingIntent contentIntent;
-        if(MainActivity.appSleeping) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("notifDisp", 1);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            contentIntent = PendingIntent.getActivity(this, 0, intent , 0);
-        }
-        else {
-            contentIntent = null;
-        }
+
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.putExtra("notifDisp", 1);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        contentIntent = PendingIntent.getActivity(this, 0, intent , 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "default")
                 .setDefaults(DEFAULT_VIBRATE | DEFAULT_LIGHTS)

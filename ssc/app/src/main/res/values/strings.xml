@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">SscApp</string>
+    <string name="app_name">SSC App</string>
 
     <string name="net_no_server_connection">No server connection!\nData might be outdated</string>
-    <string name="net_no_init_data">Internet connection required to load initial data, then app can be used offline.\n\n Check internet connection and restart app</string>
+    <string name="net_no_init_data">Internet connection required to load initial data, then app can be used offline.\n\n Check Internet connection and restart the app</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -40,7 +40,7 @@
     <string name="media_info_place_holder">media info place holder</string>
     <string name="media_twitter_profile">Twitter profile</string>
     <string name="media_facebook_fanpage">Facebook fanpage</string>
-    <string name="media_youtube_chanel">Youtube chanel</string>
+    <string name="media_youtube_chanel">Youtube channel</string>
     <string name="media_instagram">Instagram</string>
     <string name="media_conference_website">Conference website</string>
     <string name="asi_logo">ASI logo</string>

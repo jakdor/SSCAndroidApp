@@ -19,6 +19,16 @@ public class SplashActivity extends AppCompatActivity {
         networkManager.checkForUpdate(getApplicationContext());
 
         Intent intent = new Intent(this, MainActivity.class);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            int data = extras.getInt("notifDisp");
+            if(data == 1){
+                intent.putExtra("notifDisp", 1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            }
+        }
+
         startActivity(intent);
         finish();
     }
