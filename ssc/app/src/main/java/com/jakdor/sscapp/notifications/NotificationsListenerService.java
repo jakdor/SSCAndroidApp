@@ -12,7 +12,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
-import com.jakdor.sscapp.MainActivity;
 import com.jakdor.sscapp.Model.NotificationHistory;
 import com.jakdor.sscapp.R;
 import com.jakdor.sscapp.SplashActivity;
