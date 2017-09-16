@@ -1,0 +1,6 @@
+bin/
+include/
+lib/
+local/
+ssc/db_backup0
+ssc/db.sqlite3
