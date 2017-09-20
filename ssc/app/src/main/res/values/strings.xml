@@ -63,5 +63,9 @@
     <string name="notification_hist_title_place_holder">Title</string>
     <string name="notification_hist_message_place_holder">Notification body here</string>
     <string name="you_haven_t_received_any_notifications_yet">You haven\'t received any notifications yet</string>
+    <string name="map_info4">Conference localization</string>
+    <string name="map_info5">HOTEL CIEPLICE\nCervi 11, 58&#8211;560 Jelenia Góra\n<a href="tel:+48757551041">+48 75 755 10 41</a>\n<a href="http://www.hotelcieplice.pl">www.hotelcieplice.pl</a></string>
+    <string name="hotel_cieplice_img_dec">Hotel Cieplice</string>
+    <string name="timetable_info_icon">timetable info icon</string>
 
 </resources>

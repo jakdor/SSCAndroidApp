@@ -70,6 +70,16 @@
             android:textStyle="bold"
             android:text="@string/timetable_place_holder"/>
 
+        <ImageView
+            android:id="@+id/timetable_item_info_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignEnd="@id/timetable_item_name"
+            android:tint="@color/section_bar"
+            android:src="@drawable/menu_about"
+            android:visibility="gone"
+            android:contentDescription="@string/timetable_info_icon" />
+
     </RelativeLayout>
 
     <include layout="@layout/divider" />

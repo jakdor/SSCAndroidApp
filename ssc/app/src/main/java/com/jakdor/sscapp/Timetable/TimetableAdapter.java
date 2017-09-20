@@ -61,9 +61,17 @@ class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.Holder> {
             holder.nowCard.setVisibility(View.GONE);
         }
 
+        if(!timetable.getInfo().isEmpty()){
+            holder.infoIcon.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.infoIcon.setVisibility(View.GONE);
+        }
+
         holder.itemName.setOnClickListener( view -> showDetailsDialog(timetable));
         holder.itemTime.setOnClickListener( view -> showDetailsDialog(timetable));
         holder.clockIcon.setOnClickListener( view -> showDetailsDialog(timetable));
+        holder.infoIcon.setOnClickListener( view -> showDetailsDialog(timetable));
     }
 
     @Override
@@ -85,6 +93,8 @@ class TimetableAdapter extends RecyclerView.Adapter<TimetableAdapter.Holder> {
         CardView nowCard;
         @BindView(R.id.timetable_item_clock)
         ImageView clockIcon;
+        @BindView(R.id.timetable_item_info_icon)
+        ImageView infoIcon;
 
         Holder(View itemView) {
             super(itemView);
