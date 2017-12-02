@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
 
 import java.io.Serializable;
 
-public class NotificationHistory extends SugarRecord<NotificationHistory> implements Serializable
+public class NotificationHistory extends SugarRecord implements Serializable
 {
     @SerializedName("title")
     @Expose

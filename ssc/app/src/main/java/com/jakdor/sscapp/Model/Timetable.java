@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 
-public class Timetable extends SugarRecord<Timetable> implements Serializable
+public class Timetable extends SugarRecord implements Serializable
 {
     @SerializedName("name")
     @Expose

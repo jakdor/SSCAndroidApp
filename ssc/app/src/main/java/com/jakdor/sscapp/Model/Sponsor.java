@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 
-public class Sponsor extends SugarRecord<Sponsor> implements Serializable
+public class Sponsor extends SugarRecord implements Serializable
 {
     @SerializedName("name")
     @Expose
